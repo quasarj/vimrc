@@ -39,9 +39,14 @@ set tabstop=4
 set shiftwidth=4
 set expandtab
 
+" Search related
+set hlsearch    " when there is a previous search pattern, match all matches
+set incsearch   " immediately show matches while typing
+set ignorecase  " ignore case by default
+set smartcase   " override ignorecase if search has uppercase
+
 " font
 set guifont=DejaVu_Sans_Mono:h10:cANSI
-
 
 if has("gui_running")
 	" mappings
