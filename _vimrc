@@ -26,13 +26,19 @@ Bundle 'pyflakes.vim'
 " this is something for the pyflakes-vim plugin?
 filetype plugin indent on
 
-
-" load the system-wide vimrc
-source $VIM\_vimrc
+" some windows settings
+source $HOME/mswin.vim
 
 " ------------------------
 "  My settings here
 " ------------------------
+
+syntax on
+
+" Disable backup and copy-on-save
+" This is mainly useful for windows
+set nobackup
+set nowritebackup
 
 " Insert spaces instead of tabs (4)
 set tabstop=4
@@ -47,6 +53,16 @@ set smartcase   " override ignorecase if search has uppercase
 
 " font
 set guifont=DejaVu_Sans_Mono:h10:cANSI
+
+" universal remappings
+
+nmap ,src :source $MYVIMRC<CR>
+nmap ,erc :e $MYVIMRC<CR>
+
+" code commenting
+map ,3 :s/^/#/<CR>:noh<CR>
+map ,# :s/^#//<CR>:noh<CR>
+
 
 if has("gui_running")
 	" mappings
@@ -81,4 +97,20 @@ if has("gui_running")
 	set number
 	colorscheme wombat
 endif 
+
+if has("autocmd")
+
+ " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+endif " has("autocmd")
+
+
 
