@@ -13,15 +13,17 @@ Bundle 'gmarik/vundle'
 
 " github repos
 Bundle 'tpope/vim-fugitive'
+Bundle 'majutsushi/tagbar'
 
-
-" vimscript repos?
+" vim-script repos
 Bundle 'snipMate'
 Bundle 'The-NERD-tree'
 Bundle 'pep8'
 Bundle 'pyflakes'
 Bundle 'pyflakes.vim'
-
+Bundle 'SuperTab'
+"Bundle 'TagBar'
+Bundle 'YankRing.vim'
 
 " this is something for the pyflakes-vim plugin?
 filetype plugin indent on
@@ -46,7 +48,7 @@ set shiftwidth=4
 set expandtab
 
 " Search related
-set hlsearch    " when there is a previous search pattern, match all matches
+set hlsearch    " highlight search matches
 set incsearch   " immediately show matches while typing
 set ignorecase  " ignore case by default
 set smartcase   " override ignorecase if search has uppercase
@@ -58,6 +60,10 @@ set guifont=DejaVu_Sans_Mono:h10:cANSI
 
 nmap ,src :source $MYVIMRC<CR>
 nmap ,erc :e $MYVIMRC<CR>
+
+" make esc disable highlightning in command mode
+nmap <silent> <esc> :noh<CR>
+
 
 " code commenting
 map ,3 :s/^/#/<CR>:noh<CR>
@@ -71,13 +77,22 @@ if has("gui_running")
 	nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>	
 
 	" make F1 display NERDTree
-	nnoremap <F1> :NERDTree<CR>
+	nnoremap <F1> :NERDTreeToggle<CR>
 
 	" make F2 close current file
-	nnoremap <F2> :q<CR>
+	nnoremap <F2> :bd<CR>
 
-	" make F3 cycle through open windows
-	map <F3> <c-w>w
+	" make F3 go to previous buffer
+	map <F3> :bp<CR>
+    " make F4 go to next buffer
+    map <F4> :bn<CR>
+
+
+    " make F11 bring up the yankring
+	nnoremap <silent> <F11> :YRShow<CR>
+    
+    " make F12 toggle TagBar
+    nnoremap <silent> <F12> :TagbarToggle<CR>
 
 	" map window movement keys
 	map <c-h> <c-w>h
