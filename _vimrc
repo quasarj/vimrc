@@ -29,7 +29,7 @@ Bundle 'YankRing.vim'
 filetype plugin indent on
 
 " some windows settings
-source $HOME/mswin.vim
+" source $HOME/mswin.vim
 
 " ------------------------
 "  My settings here
@@ -53,65 +53,62 @@ set incsearch   " immediately show matches while typing
 set ignorecase  " ignore case by default
 set smartcase   " override ignorecase if search has uppercase
 
-" font
-set guifont=DejaVu_Sans_Mono:h10:cANSI
-
 " universal remappings
 
 nmap ,src :source $MYVIMRC<CR>
 nmap ,erc :e $MYVIMRC<CR>
 
 " make esc disable highlightning in command mode
-nmap <silent> <esc> :noh<CR>
-
+" nmap <silent> <esc> :noh<CR>
+" the above is causing some issue in console mode
 
 " code commenting
 map ,3 :s/^/#/<CR>:noh<CR>
 map ,# :s/^#//<CR>:noh<CR>
 
+" mappings
+
+" make C-F1 toggle the menu bar
+nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>	
+
+" make F1 display NERDTree
+nnoremap <F1> :NERDTreeToggle<CR>
+
+" make F2 close current file
+nnoremap <F2> :bd<CR>
+
+" make F3 go to previous buffer
+map <F3> :bp<CR>
+" make F4 go to next buffer
+map <F4> :bn<CR>
+
+
+" make F11 bring up the yankring
+nnoremap <silent> <F11> :YRShow<CR>
+
+" make F12 toggle TagBar
+nnoremap <silent> <F12> :TagbarToggle<CR>
+
+" map window movement keys
+map <c-h> <c-w>h
+map <c-l> <c-w>l
+map <c-j> <c-w>j
+map <c-k> <c-w>k
 
 if has("gui_running")
-	" mappings
-	
-	" make C-F1 toggle the menu bar
-	nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>	
-
-	" make F1 display NERDTree
-	nnoremap <F1> :NERDTreeToggle<CR>
-
-	" make F2 close current file
-	nnoremap <F2> :bd<CR>
-
-	" make F3 go to previous buffer
-	map <F3> :bp<CR>
-    " make F4 go to next buffer
-    map <F4> :bn<CR>
-
-
-    " make F11 bring up the yankring
-	nnoremap <silent> <F11> :YRShow<CR>
-    
-    " make F12 toggle TagBar
-    nnoremap <silent> <F12> :TagbarToggle<CR>
-
-	" map window movement keys
-	map <c-h> <c-w>h
-	map <c-l> <c-w>l
-	map <c-j> <c-w>j
-	map <c-k> <c-w>k
+    " font
+    set guifont=DejaVu_Sans_Mono:h10:cANSI
 
 	" hide menu and toolbar
 	set go-=m
 	set go-=T
-
 
 	" set some other windows stuff
 	set lines=35 columns=100
 	"winpos 100 100
 	winpos 432 329
 	set number
-	colorscheme wombat
-endif 
+endif
 
 if has("autocmd")
 
@@ -126,6 +123,3 @@ if has("autocmd")
     \ endif
 
 endif " has("autocmd")
-
-
-
