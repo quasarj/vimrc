@@ -23,7 +23,7 @@ nnoremap <silent> <buffer> [[ :call <SID>Python_jump('?^\(class\\|def\)')<cr>
 nnoremap <silent> <buffer> ]m :call <SID>Python_jump('/^\s*\(class\\|def\)')<cr>
 nnoremap <silent> <buffer> [m :call <SID>Python_jump('?^\s*\(class\\|def\)')<cr>
 
-nmap <buffer> <F9> :!python %<CR>`.
+nmap <buffer> <F9> :!python %<CR>
 
 if exists('*<SID>Python_jump') | finish | endif
 
