@@ -24,6 +24,12 @@ Bundle 'pyflakes.vim'
 Bundle 'SuperTab'
 "Bundle 'TagBar'
 Bundle 'YankRing.vim'
+Bundle 'delimitMate.vim'
+Bundle 'VimClojure'
+
+" color scheme repos
+Bundle 'tomasr/molokai'
+
 
 " this is something for the pyflakes-vim plugin?
 filetype plugin indent on
@@ -110,7 +116,10 @@ if has("gui_running")
 	"winpos 100 100
 	winpos 432 329
 	set number
-	colorscheme wombat
+	" colorscheme wombat
+    " colo satori
+    " colo zellner
+    colo quasar-light
 endif 
 
 if has("autocmd")
