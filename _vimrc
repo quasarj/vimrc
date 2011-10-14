@@ -35,7 +35,7 @@ Bundle 'tomasr/molokai'
 filetype plugin indent on
 
 " some windows settings
-" source $HOME/mswin.vim
+source $HOME/mswin.vim
 
 " ------------------------
 "  My settings here
@@ -65,7 +65,7 @@ nmap ,src :source $MYVIMRC<CR>
 nmap ,erc :e $MYVIMRC<CR>
 
 " make esc disable highlightning in command mode
-" nmap <silent> <esc> :noh<CR>
+nmap <silent> <esc> :noh<CR>
 " the above is causing some issue in console mode
 
 " code commenting
