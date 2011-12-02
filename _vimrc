@@ -115,10 +115,10 @@ if has("gui_running")
 	winpos 432 329
 	set number
 
-	" colorscheme wombat
+	colo wombat
     " colo satori
     " colo zellner
-    colo quasar-light
+    " colo quasar-light
 endif 
 
 if has("autocmd")
