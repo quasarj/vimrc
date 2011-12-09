@@ -101,6 +101,10 @@ map <c-l> <c-w>l
 map <c-j> <c-w>j
 map <c-k> <c-w>k
 
+" some commands to help with slow pinkies!
+command W w
+command Q q
+
 if has("gui_running")
     " font
     set guifont=DejaVu_Sans_Mono:h10:cANSI
