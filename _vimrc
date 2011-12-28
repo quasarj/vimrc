@@ -104,16 +104,16 @@ command Q q
 
 if has("gui_running")
     " font
-    set guifont=DejaVu_Sans_Mono:h10:cANSI
+    set guifont=DejaVu_Sans_Mono:h12
 
 	" hide menu and toolbar
 	set go-=m
 	set go-=T
 
 	" set some other windows stuff
-	" set lines=35 columns=100
+	set lines=35 columns=100
 	"winpos 100 100
-	" winpos 432 329
+	winpos 432 329
 	set number
 
 	colo wombat
