@@ -34,9 +34,6 @@ Bundle 'tomasr/molokai'
 " this is something for the pyflakes-vim plugin?
 filetype plugin indent on
 
-" some windows settings
-source $HOME/mswin.vim
-
 " ------------------------
 "  My settings here
 " ------------------------
@@ -45,8 +42,8 @@ syntax on
 
 " Disable backup and copy-on-save
 " This is mainly useful for windows
-set nobackup
-set nowritebackup
+" set nobackup
+" set nowritebackup
 
 " Insert spaces instead of tabs (4)
 set tabstop=4
@@ -114,9 +111,9 @@ if has("gui_running")
 	set go-=T
 
 	" set some other windows stuff
-	set lines=35 columns=100
+	" set lines=35 columns=100
 	"winpos 100 100
-	winpos 432 329
+	" winpos 432 329
 	set number
 
 	colo wombat
