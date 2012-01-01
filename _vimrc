@@ -104,7 +104,7 @@ command Q q
 
 if has("gui_running")
     " font
-    set guifont=DejaVu_Sans_Mono:h12
+    set guifont="DejaVu Sans Mono 10"
 
 	" hide menu and toolbar
 	set go-=m
