@@ -26,6 +26,8 @@ Bundle 'SuperTab'
 Bundle 'YankRing.vim'
 Bundle 'delimitMate.vim'
 Bundle 'VimClojure'
+Bundle 'Gundo'
+
 
 " color scheme repos
 Bundle 'tomasr/molokai'
@@ -123,6 +125,10 @@ if has("gui_running")
     " colo satori
     " colo zellner
     " colo quasar-light
+    
+    " Simpler saveas
+    map :W :browse confirm saveas
+    map :O :browse confirm open 
 endif 
 
 " add some unicode detection stuff
