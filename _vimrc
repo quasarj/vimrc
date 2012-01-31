@@ -22,11 +22,14 @@ Bundle 'pep8'
 Bundle 'pyflakes'
 Bundle 'pyflakes.vim'
 Bundle 'SuperTab'
-"Bundle 'TagBar'
 Bundle 'YankRing.vim'
 Bundle 'delimitMate.vim'
 Bundle 'VimClojure'
 Bundle 'Gundo'
+" Note that Command-T requires Ruby, and 
+" the extention must be manually compiled
+" after the Bundle is installed
+Bundle 'Command-T'
 
 " color scheme repos
 Bundle 'tomasr/molokai'
@@ -66,13 +69,18 @@ let mapleader = ","
 nmap <leader>src :source $MYVIMRC<CR>
 nmap <leader>erc :e $MYVIMRC<CR>
 
-" make esc disable highlightning in command mode
-nmap <silent> <esc> :noh<CR>
-" the above is causing some issue in console mode
-
 " code commenting
 map <leader>3 :s/^/#/<CR>:noh<CR>
 map <leader># :s/^#//<CR>:noh<CR>
+
+" Shortcut to rapidly toggle `set list`
+nmap <leader>l :set list!<CR>
+
+" CommandT
+nmap <silent> <leader>t :CommandT<CR>
+
+" make esc disable highlightning in command mode
+nmap <silent> <esc> :noh<CR>
 
 " mappings
 
@@ -147,9 +155,6 @@ if has("gui_running")
     map :W :browse confirm saveas
     map :O :browse confirm open 
 
-    " Shortcut to rapidly toggle `set list`
-    nmap <leader>l :set list!<CR>
-     
     " Use the same symbols as TextMate for tabstops and EOLs
     set listchars=tab:▸\ ,eol:¬
 endif 
