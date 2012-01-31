@@ -53,6 +53,7 @@ set nowritebackup
 " Insert spaces instead of tabs (4)
 set tabstop=4
 set shiftwidth=4
+set softtabstop=4 "backspace 4 spaces at a time
 set expandtab
 
 " Search related
