@@ -78,7 +78,7 @@ map ,# :s/^#//<CR>:noh<CR>
 " mappings
 
 " make C-F1 toggle the menu bar
-nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>	
+nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>    
 
 " make F1 display NERDTree
 nnoremap <F1> :NERDTreeToggle<CR>
@@ -108,30 +108,6 @@ map <c-k> <c-w>k
 command W w
 command Q q
 
-if has("gui_running")
-    " font
-    set guifont=DejaVu_Sans_Mono:h10:cANSI
-
-	" hide menu and toolbar
-	set go-=m
-	set go-=T
-
-	" set some other windows stuff
-	set lines=35 columns=100
-	"winpos 100 100
-	winpos 432 329
-	set number
-
-	colo wombat
-    " colo satori
-    " colo zellner
-    " colo quasar-light
-    
-    " Simpler saveas
-    map :W :browse confirm saveas
-    map :O :browse confirm open 
-endif 
-
 " add some unicode detection stuff
 if has("multi_byte")    " if not, we need to recompile
   if &enc !~? '^u'      " if the locale 'encoding' starts with u or U
@@ -148,6 +124,36 @@ if has("multi_byte")    " if not, we need to recompile
 else
   echomsg 'Warning: Multibyte support is not compiled-in.'
 endif
+
+if has("gui_running")
+    " font
+    set guifont=DejaVu_Sans_Mono:h10:cANSI
+
+    " hide menu and toolbar
+    set go-=m
+    set go-=T
+
+    " set some other windows stuff
+    set lines=35 columns=100
+    "winpos 100 100
+    winpos 432 329
+    set number
+
+    colo wombat
+    " colo satori
+    " colo zellner
+    " colo quasar-light
+    
+    " Simpler saveas
+    map :W :browse confirm saveas
+    map :O :browse confirm open 
+
+    " Shortcut to rapidly toggle `set list`
+    nmap <leader>l :set list!<CR>
+     
+    " Use the same symbols as TextMate for tabstops and EOLs
+    set listchars=tab:▸\ ,eol:¬
+endif 
 
 if has("autocmd")
 
