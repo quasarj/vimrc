@@ -28,10 +28,8 @@ Bundle 'delimitMate.vim'
 Bundle 'VimClojure'
 Bundle 'Gundo'
 
-
 " color scheme repos
 Bundle 'tomasr/molokai'
-
 
 " this is something for the pyflakes-vim plugin?
 filetype plugin indent on
@@ -62,18 +60,19 @@ set incsearch   " immediately show matches while typing
 set ignorecase  " ignore case by default
 set smartcase   " override ignorecase if search has uppercase
 
+let mapleader = ","
 " universal remappings
 
-nmap ,src :source $MYVIMRC<CR>
-nmap ,erc :e $MYVIMRC<CR>
+nmap <leader>src :source $MYVIMRC<CR>
+nmap <leader>erc :e $MYVIMRC<CR>
 
 " make esc disable highlightning in command mode
 nmap <silent> <esc> :noh<CR>
 " the above is causing some issue in console mode
 
 " code commenting
-map ,3 :s/^/#/<CR>:noh<CR>
-map ,# :s/^#//<CR>:noh<CR>
+map <leader>3 :s/^/#/<CR>:noh<CR>
+map <leader># :s/^#//<CR>:noh<CR>
 
 " mappings
 
