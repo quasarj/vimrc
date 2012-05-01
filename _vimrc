@@ -16,7 +16,7 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'majutsushi/tagbar'
 
 " vim-script repos
-Bundle 'snipMate'
+"Bundle 'snipMate'
 Bundle 'The-NERD-tree'
 Bundle 'pep8'
 Bundle 'pyflakes'
@@ -24,7 +24,7 @@ Bundle 'pyflakes.vim'
 Bundle 'SuperTab'
 "Bundle 'TagBar'
 Bundle 'YankRing.vim'
-Bundle 'delimitMate.vim'
+"Bundle 'delimitMate.vim' " delimitMate was a bad idea anyway
 Bundle 'VimClojure'
 
 " color scheme repos
