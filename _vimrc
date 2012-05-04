@@ -11,37 +11,59 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-" github repos
-Bundle 'tpope/vim-fugitive'
+" Todo: what is this?
 Bundle 'majutsushi/tagbar'
 
 " vim-script repos
-Bundle 'snipMate'
+"Bundle 'snipMate'
 Bundle 'The-NERD-tree'
 Bundle 'pep8'
 Bundle 'pyflakes'
 Bundle 'pyflakes.vim'
-Bundle 'SuperTab'
+
+" pydoc --- provides "<leader>pw" to get python documentation on the
+" word under the cursor.
+" In order to get pydoc working with windows (with default Python27)
+" First, ensure python is on the path, as well as c:\python27\Scripts
+" Then, create a .bat file in c:\python27\scripts called pydoc.bat
+" Place this line in the file: (without leading ", but *with* the @)
+" @python c:\Python27\Lib\pydoc.py %*
+Bundle 'pydoc.vim'
+
+"Bundle 'SuperTab'
+Bundle 'SuperTab-continued.'
 Bundle 'YankRing.vim'
-Bundle 'delimitMate.vim'
-Bundle 'VimClojure'
+"Bundle 'VimClojure'
+
+" Better undo support with Gundo
 Bundle 'Gundo'
+
 " Note that Command-T requires Ruby, and 
 " the extention must be manually compiled
 " after the Bundle is installed
 Bundle 'Command-T'
 
-" color scheme repos
-Bundle 'tomasr/molokai'
+" A simple Buffer Explorer, adds a line to the top
+" of the screen when you have multiple buffers open.
+Bundle 'fholgado/minibufexpl.vim'
 
 " this is something for the pyflakes-vim plugin?
 filetype plugin indent on
+
+" SuperTab python settings
+" Todo: This should possibly be moved into the python ftplugin?
+au FileType python set omnifunc=pythoncomplete#Complete
+let g:SuperTabDefaultCompletionType = "context"
+let g:SuperTabContextDefaultCompletionType = "<c-n>"
+
+set completeopt=menuone,longest,preview
+
 
 " some windows settings
 source $HOME/mswin.vim
 
 " ------------------------
-"  My settings here
+"  Syntax related stuff
 " ------------------------
 
 syntax on
@@ -53,15 +75,20 @@ set nowritebackup
 
 " Insert spaces instead of tabs (4)
 set tabstop=4
-set shiftwidth=4
-set softtabstop=4 "backspace 4 spaces at a time
-set expandtab
+set shiftwidth=4    " shift four at a time with > <
+set softtabstop=4   " backspace 4 spaces at a time
+set expandtab       " replace tabs with spaces
 
 " Search related
 set hlsearch    " highlight search matches
 set incsearch   " immediately show matches while typing
 set ignorecase  " ignore case by default
 set smartcase   " override ignorecase if search has uppercase
+
+
+" ------------------------
+"       Key bindings
+" ------------------------
 
 let mapleader = ","
 " universal remappings
@@ -79,10 +106,12 @@ nmap <leader>l :set list!<CR>
 " CommandT
 nmap <silent> <leader>t :CommandT<CR>
 
+" Gundo
+nmap <leader>g :GundoToggle<CR>
+
 " make esc disable highlightning in command mode
 nmap <silent> <esc> :noh<CR>
 
-" mappings
 
 " make C-F1 toggle the menu bar
 nnoremap <C-F1> :if &go=~#'m'<Bar>set go-=m<Bar>else<Bar>set go+=m<Bar>endif<CR>    
@@ -114,6 +143,8 @@ map <c-k> <c-w>k
 " some commands to help with slow pinkies!
 command W w
 command Q q
+
+
 
 " add some unicode detection stuff
 if has("multi_byte")    " if not, we need to recompile
