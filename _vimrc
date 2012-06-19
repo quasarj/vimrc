@@ -69,6 +69,8 @@ source $HOME/mswin.vim
 
 syntax on
 
+set nowrap
+
 " Disable backup and copy-on-save
 " This is mainly useful for windows
 set nobackup

@@ -20,6 +20,7 @@ if version >= 700
   hi MatchParen guifg=#f6f3e8 guibg=#857b6f gui=bold
   hi Pmenu 		guifg=#f6f3e8 guibg=#444444
   hi PmenuSel 	guifg=#000000 guibg=#cae682
+  hi ColorColumn guibg=#303030
 endif
 
 " General colors
