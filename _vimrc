@@ -45,10 +45,11 @@ Bundle 'Command-T'
 
 " A simple Buffer Explorer, adds a line to the top
 " of the screen when you have multiple buffers open.
-Bundle 'fholgado/minibufexpl.vim'
+" Bundle 'fholgado/minibufexpl.vim'
 
-" this is something for the pyflakes-vim plugin?
+" Enable full filetype plugin support
 filetype plugin indent on
+set modelines=0  " fully disable modelines
 
 " SuperTab python settings
 " Todo: This should possibly be moved into the python ftplugin?
@@ -84,6 +85,18 @@ set hlsearch    " highlight search matches
 set incsearch   " immediately show matches while typing
 set ignorecase  " ignore case by default
 set smartcase   " override ignorecase if search has uppercase
+set scrolloff=3 " show 3 lines of contexte when moving to
+                " the next search match
+
+
+
+" Other stuff
+set cursorline  " highlight the line the cursor is on
+set wildmenu    " this menu is too wild to handle!
+set hidden      " Allow switching away from unsaved buffers
+set ruler       " display line number and % info
+"set laststatus=2 " Always display window status bar
+set colorcolumn=80 " Display a line at 80 characters
 
 
 " ------------------------
@@ -91,8 +104,19 @@ set smartcase   " override ignorecase if search has uppercase
 " ------------------------
 
 let mapleader = ","
-" universal remappings
 
+" arrow keys are evil!
+nmap <Right> :bn<CR>
+nmap <Left>  :bp<CR>
+nmap <Up>    :bfirst<CR>
+nmap <Down>  :b
+
+imap <Right> NO ARROW KEYS FOR YOU!
+imap <Left>  NO ARROW KEYS FOR YOU!
+imap <Up>    NO ARROW KEYS FOR YOU!
+imap <Down>  NO ARROW KEYS FOR YOU!
+
+" universal remappings
 nmap <leader>src :source $MYVIMRC<CR>
 nmap <leader>erc :e $MYVIMRC<CR>
 
@@ -143,8 +167,6 @@ map <c-k> <c-w>k
 " some commands to help with slow pinkies!
 command W w
 command Q q
-
-
 
 " add some unicode detection stuff
 if has("multi_byte")    " if not, we need to recompile
