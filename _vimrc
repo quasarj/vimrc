@@ -47,6 +47,12 @@ Bundle 'Command-T'
 " of the screen when you have multiple buffers open.
 " Bundle 'fholgado/minibufexpl.vim'
 
+" html color coloring
+Bundle 'skammer/vim-css-color'
+
+" Zen Coding
+Bundle 'mattn/zencoding-vim'
+
 " Enable full filetype plugin support
 filetype plugin indent on
 set modelines=0  " fully disable modelines
