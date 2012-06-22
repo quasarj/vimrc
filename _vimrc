@@ -53,6 +53,21 @@ Bundle 'skammer/vim-css-color'
 " Zen Coding
 Bundle 'mattn/zencoding-vim'
 
+" commentary - quickly comment stuff out with \\\
+Bundle 'tpope/vim-commentary.git'
+
+" CtrlP - a pure Vimscript Command-T replacement
+Bundle 'kien/ctrlp.vim'
+
+
+" ColorScheme bundles
+Bundle 'altercation/vim-colors-solarized'
+Bundle 'vim-scripts/Mustang2.git'
+Bundle 'vim-scripts/BusyBee.git'
+Bundle 'sjl/badwolf'
+Bundle 'chriskempson/vim-tomorrow-theme.git'
+
+
 " Enable full filetype plugin support
 filetype plugin indent on
 set modelines=0  " fully disable modelines
