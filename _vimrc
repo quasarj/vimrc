@@ -96,6 +96,7 @@ set nowrap
 " This is mainly useful for windows
 set nobackup
 set nowritebackup
+set directory=c:\\temp " put all swap files here
 
 " Insert spaces instead of tabs (4)
 set tabstop=4
