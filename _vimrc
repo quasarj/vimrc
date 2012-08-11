@@ -82,7 +82,7 @@ set completeopt=menuone,longest,preview
 
 
 " some windows settings
-source $HOME/mswin.vim
+source $HOME/vimfiles/mswin.vim
 
 " ------------------------
 "  Syntax related stuff
