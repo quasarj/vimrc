@@ -11,6 +11,9 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+" jedi-vim, vim plugin for the Jedi python autocomplete lib
+Bundle 'davidhalter/jedi-vim'
+
 " Todo: what is this?
 Bundle 'majutsushi/tagbar'
 
@@ -30,8 +33,6 @@ Bundle 'pyflakes.vim'
 " @python c:\Python27\Lib\pydoc.py %*
 Bundle 'pydoc.vim'
 
-"Bundle 'SuperTab'
-Bundle 'SuperTab-continued.'
 Bundle 'YankRing.vim'
 "Bundle 'VimClojure'
 
@@ -67,6 +68,12 @@ Bundle 'vim-scripts/BusyBee.git'
 Bundle 'sjl/badwolf'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
 
+" LaTeX
+" Bundle 'LaTeX-Box'
+
+" SuperTab, the most current version I have found.
+" This version gets along with Jedi-VIM, even.
+Bundle 'ervandew/supertab'
 
 " Enable full filetype plugin support
 filetype plugin indent on
@@ -74,9 +81,9 @@ set modelines=0  " fully disable modelines
 
 " SuperTab python settings
 " Todo: This should possibly be moved into the python ftplugin?
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" au FileType python set omnifunc=pythoncomplete#Complete
+"let g:SuperTabDefaultCompletionType = "context"
+"let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 set completeopt=menuone,longest,preview
 
@@ -155,7 +162,7 @@ nmap <leader>l :set list!<CR>
 nmap <silent> <leader>t :CommandT<CR>
 
 " Gundo
-nmap <leader>g :GundoToggle<CR>
+" nmap <leader>g :GundoToggle<CR>
 
 " make esc disable highlightning in command mode
 nmap <silent> <esc> :noh<CR>
