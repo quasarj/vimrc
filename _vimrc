@@ -11,6 +11,8 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+Bundle 'Valloric/YouCompleteMe'
+
 " Todo: what is this?
 Bundle 'majutsushi/tagbar'
 
@@ -207,7 +209,7 @@ endif
 
 if has("gui_running")
     " font
-    set guifont="DejaVu Sans Mono 10"
+    set guifont="DejaVu Sans Mono 11"
 
     " hide menu and toolbar
     set go-=m
