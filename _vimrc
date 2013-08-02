@@ -13,6 +13,15 @@ Bundle 'gmarik/vundle'
 
 Bundle 'Valloric/YouCompleteMe'
 
+" sql stuff
+" Bundle 'dbext.vim'
+
+" Oracle SQL stuff
+" Bundle 'tlib'
+" Bundle 'talek/vorax'
+
+
+
 " Todo: what is this?
 Bundle 'majutsushi/tagbar'
 
@@ -69,6 +78,11 @@ Bundle 'vim-scripts/BusyBee.git'
 Bundle 'sjl/badwolf'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
 
+" enable powerline
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
+
 
 " Enable full filetype plugin support
 filetype plugin indent on
@@ -114,11 +128,14 @@ set scrolloff=3 " show 3 lines of contexte when moving to
 
 " Other stuff
 set cursorline  " highlight the line the cursor is on
+set colorcolumn=80 " Display a line at 80 characters
 set wildmenu    " this menu is too wild to handle!
 set hidden      " Allow switching away from unsaved buffers
-set ruler       " display line number and % info
-"set laststatus=2 " Always display window status bar
-set colorcolumn=80 " Display a line at 80 characters
+" The following settings are for powerline.
+" If you remove powerline, you should adjust these
+set noruler       " display line number and % info
+set laststatus=2 " Always display window status bar
+set noshowmode   " do not show mode text in the bottom bar
 
 
 " ------------------------
@@ -209,11 +226,13 @@ endif
 
 if has("gui_running")
     " font
-    set guifont="DejaVu Sans Mono 11"
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
 
     " hide menu and toolbar
     set go-=m
     set go-=T
+    " hide the right scrollbar
+    set go-=r
 
     " set some other windows stuff
     set lines=35 columns=100
