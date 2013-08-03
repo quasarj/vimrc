@@ -240,7 +240,7 @@ if has("gui_running")
     winpos 432 329
     set number
 
-    colo wombat
+    colo qdark
     " colo satori
     " colo zellner
     " colo quasar-light
