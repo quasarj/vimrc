@@ -5,6 +5,12 @@ set nocompatible
 " ---------------------------
 filetype off
 
+" powerline is installed a bit differently
+" because it's used by other programs as well
+" Note: obviously this requires quasarj/dotfiles to be installed
+set rtp+=~/.dotfiles/submodules/powerline/powerline/bindings/vim
+
+
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
@@ -77,11 +83,6 @@ Bundle 'vim-scripts/Mustang2.git'
 Bundle 'vim-scripts/BusyBee.git'
 Bundle 'sjl/badwolf'
 Bundle 'chriskempson/vim-tomorrow-theme.git'
-
-" enable powerline
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
 
 
 " Enable full filetype plugin support
