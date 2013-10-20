@@ -27,6 +27,10 @@ Bundle 'Valloric/YouCompleteMe'
 " Bundle 'talek/vorax'
 
 
+Bundle 'chrisbra/csv.vim'
+let g:csv_autocmd_arrange = 1
+
+Bundle 'tpope/vim-fugitive'
 
 " Todo: what is this?
 Bundle 'majutsushi/tagbar'
