@@ -1,15 +1,11 @@
 set nocompatible
 
+filetype off
+
+
 " ---------------------------
 "  Vundle settings
 " ---------------------------
-filetype off
-
-" powerline is installed a bit differently
-" because it's used by other programs as well
-" Note: obviously this requires quasarj/dotfiles to be installed
-set rtp+=~/.dotfiles/submodules/powerline/powerline/bindings/vim
-
 
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
@@ -17,52 +13,29 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+" Excellent completion plugin for many filetypes
+" Note that it must be compiled outside of vim
 Bundle 'Valloric/YouCompleteMe'
 
-" sql stuff
-" Bundle 'dbext.vim'
-
-" Oracle SQL stuff
-" Bundle 'tlib'
-" Bundle 'talek/vorax'
-
-
-
-" Todo: what is this?
-Bundle 'majutsushi/tagbar'
-
 " vim-script repos
-"Bundle 'snipMate'
 Bundle 'The-NERD-tree'
 Bundle 'pep8'
-Bundle 'pyflakes'
-Bundle 'pyflakes.vim'
 
-" pydoc --- provides "<leader>pw" to get python documentation on the
-" word under the cursor.
-" In order to get pydoc working with windows (with default Python27)
-" First, ensure python is on the path, as well as c:\python27\Scripts
-" Then, create a .bat file in c:\python27\scripts called pydoc.bat
-" Place this line in the file: (without leading ", but *with* the @)
-" @python c:\Python27\Lib\pydoc.py %*
-Bundle 'pydoc.vim'
-
-"Bundle 'SuperTab'
-Bundle 'SuperTab-continued.'
 Bundle 'YankRing.vim'
-"Bundle 'VimClojure'
 
 " Better undo support with Gundo
 Bundle 'Gundo'
 
+" Awesome fuzzy file searching
 " Note that Command-T requires Ruby, and 
 " the extention must be manually compiled
 " after the Bundle is installed
 Bundle 'Command-T'
 
-" A simple Buffer Explorer, adds a line to the top
-" of the screen when you have multiple buffers open.
-" Bundle 'fholgado/minibufexpl.vim'
+
+" --------------------
+"  HTML stuff
+" --------------------
 
 " html color coloring
 Bundle 'skammer/vim-css-color'
@@ -70,73 +43,23 @@ Bundle 'skammer/vim-css-color'
 " Zen Coding
 Bundle 'mattn/zencoding-vim'
 
+" --------------------
+
+
 " commentary - quickly comment stuff out with \\\
 Bundle 'tpope/vim-commentary.git'
-
-" CtrlP - a pure Vimscript Command-T replacement
-Bundle 'kien/ctrlp.vim'
-
-
-" ColorScheme bundles
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'vim-scripts/Mustang2.git'
-Bundle 'vim-scripts/BusyBee.git'
-Bundle 'sjl/badwolf'
-Bundle 'chriskempson/vim-tomorrow-theme.git'
 
 
 " Enable full filetype plugin support
 filetype plugin indent on
-set modelines=0  " fully disable modelines
 
 " SuperTab python settings
 " Todo: This should possibly be moved into the python ftplugin?
-au FileType python set omnifunc=pythoncomplete#Complete
-let g:SuperTabDefaultCompletionType = "context"
-let g:SuperTabContextDefaultCompletionType = "<c-n>"
+" au FileType python set omnifunc=pythoncomplete#Complete
+" let g:SuperTabDefaultCompletionType = "context"
+" let g:SuperTabContextDefaultCompletionType = "<c-n>"
 
 set completeopt=menuone,longest,preview
-
-
-" ------------------------
-"  Syntax related stuff
-" ------------------------
-
-syntax on
-
-set nowrap
-
-" Disable backup and copy-on-save
-" This is mainly useful for windows
-" set nobackup
-" set nowritebackup
-
-" Insert spaces instead of tabs (4)
-set tabstop=4
-set shiftwidth=4    " shift four at a time with > <
-set softtabstop=4   " backspace 4 spaces at a time
-set expandtab       " replace tabs with spaces
-
-" Search related
-set hlsearch    " highlight search matches
-set incsearch   " immediately show matches while typing
-set ignorecase  " ignore case by default
-set smartcase   " override ignorecase if search has uppercase
-set scrolloff=3 " show 3 lines of contexte when moving to
-                " the next search match
-
-
-
-" Other stuff
-set cursorline  " highlight the line the cursor is on
-set colorcolumn=80 " Display a line at 80 characters
-set wildmenu    " this menu is too wild to handle!
-set hidden      " Allow switching away from unsaved buffers
-" The following settings are for powerline.
-" If you remove powerline, you should adjust these
-set noruler       " display line number and % info
-set laststatus=2 " Always display window status bar
-set noshowmode   " do not show mode text in the bottom bar
 
 
 " ------------------------
@@ -195,9 +118,6 @@ map <F4> :bn<CR>
 " make F11 bring up the yankring
 nnoremap <silent> <F11> :YRShow<CR>
 
-" make F12 toggle TagBar
-nnoremap <silent> <F12> :TagbarToggle<CR>
-
 " map window movement keys
 map <c-h> <c-w>h
 map <c-l> <c-w>l
@@ -207,6 +127,128 @@ map <c-k> <c-w>k
 " some commands to help with slow pinkies!
 command W w
 command Q q
+
+
+syntax on
+
+
+if has("gui_running")
+" ------------------------
+"  GUI-specific settings
+" ------------------------
+
+    " Powerline
+    " Note: This requires quasarj/dotfiles to be installed
+    set rtp+=~/.dotfiles/submodules/powerline/powerline/bindings/vim
+
+    " font
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
+
+    " hide menu and toolbar
+    set go-=m
+    set go-=T
+    " hide the right scrollbar
+    set go-=r
+
+    " set some other windows stuff
+    set lines=35 columns=100
+    " winpos 100 100
+    " winpos 432 329
+    set number
+
+    colo qdark
+    " colo satori
+    " colo zellner
+    " colo quasar-light
+    
+    " Simpler saveas
+    map :W :browse confirm saveas
+    map :O :browse confirm open 
+
+    " Use the same symbols as TextMate for tabstops and EOLs
+    set listchars=tab:▸\ ,eol:¬
+
+
+    " ------------------------
+    "  SYNTAX RELATED STUFF
+    " ------------------------
+
+    set nowrap
+
+    " Disable backup and copy-on-save
+    " This is mainly useful for windows
+    " set nobackup
+    " set nowritebackup
+
+    " Insert spaces instead of tabs (4)
+    set tabstop=4
+    set shiftwidth=4    " shift four at a time with > <
+    set softtabstop=4   " backspace 4 spaces at a time
+    set expandtab       " replace tabs with spaces
+
+    " Search related
+    set hlsearch    " highlight search matches
+    set incsearch   " immediately show matches while typing
+    set ignorecase  " ignore case by default
+    set smartcase   " override ignorecase if search has uppercase
+    set scrolloff=3 " show 3 lines of contexte when moving to
+                    " the next search match
+
+
+
+    " Other stuff
+    set cursorline  " highlight the line the cursor is on
+    set colorcolumn=80 " Display a line at 80 characters
+    set wildmenu    " this menu is too wild to handle!
+    set hidden      " Allow switching away from unsaved buffers
+    " The following settings are for powerline.
+    " If you remove powerline, you should adjust these
+    set noruler       " display line number and % info
+    set laststatus=2 " Always display window status bar
+    set noshowmode   " do not show mode text in the bottom bar
+    set modelines=0  " fully disable modelines
+
+else
+" ------------------------
+"  Console-specific settings
+" ------------------------
+
+    " ------------------------
+    "  SYNTAX RELATED STUFF
+    " ------------------------
+
+    colo qdark
+
+    set wrap " scrolling will probably be hard on the console
+
+    " Insert spaces instead of tabs (4)
+    set tabstop=4
+    set shiftwidth=4    " shift four at a time with > <
+    set softtabstop=4   " backspace 4 spaces at a time
+    set expandtab       " replace tabs with spaces
+
+    " Search related
+    set hlsearch    " highlight search matches
+    set incsearch   " immediately show matches while typing
+    set ignorecase  " ignore case by default
+    set smartcase   " override ignorecase if search has uppercase
+    set scrolloff=3 " show 3 lines of contexte when moving to
+                    " the next search match
+
+
+    " Other stuff
+    set colorcolumn=80  " Display a line at 80 characters
+    set wildmenu        " this menu is too wild to handle!
+    set ruler           " display line number and % info
+    set laststatus=2    " Always display window status bar
+
+endif 
+
+
+" TODO: The following two sections need to be examined,
+" I do not currently understand how they are working, or even
+" if they are working (or are needed any longer).
+
 
 " add some unicode detection stuff
 if has("multi_byte")    " if not, we need to recompile
@@ -224,35 +266,6 @@ if has("multi_byte")    " if not, we need to recompile
 else
   echomsg 'Warning: Multibyte support is not compiled-in.'
 endif
-
-if has("gui_running")
-    " font
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
-
-    " hide menu and toolbar
-    set go-=m
-    set go-=T
-    " hide the right scrollbar
-    set go-=r
-
-    " set some other windows stuff
-    set lines=35 columns=100
-    "winpos 100 100
-    winpos 432 329
-    set number
-
-    colo qdark
-    " colo satori
-    " colo zellner
-    " colo quasar-light
-    
-    " Simpler saveas
-    map :W :browse confirm saveas
-    map :O :browse confirm open 
-
-    " Use the same symbols as TextMate for tabstops and EOLs
-    set listchars=tab:▸\ ,eol:¬
-endif 
 
 if has("autocmd")
 
