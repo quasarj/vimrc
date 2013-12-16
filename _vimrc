@@ -112,10 +112,6 @@ map <F3> :bp<CR>
 " make F4 go to next buffer
 map <F4> :bn<CR>
 
-
-" make F11 bring up the yankring
-nnoremap <silent> <F11> :YRShow<CR>
-
 " map window movement keys
 map <c-h> <c-w>h
 map <c-l> <c-w>l
