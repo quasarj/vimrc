@@ -21,8 +21,6 @@ Bundle 'Valloric/YouCompleteMe'
 Bundle 'The-NERD-tree'
 Bundle 'pep8'
 
-Bundle 'YankRing.vim'
-
 " Better undo support with Gundo
 Bundle 'Gundo'
 
