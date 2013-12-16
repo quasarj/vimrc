@@ -97,7 +97,7 @@ nmap <silent> <leader>t :CommandT<CR>
 nmap <leader>g :GundoToggle<CR>
 
 " make esc disable highlightning in command mode
-nmap <silent> <esc> :noh<CR>
+" nmap <silent> <esc> :noh<CR>
 
 
 " make C-F1 toggle the menu bar
@@ -217,6 +217,7 @@ else
     "  SYNTAX RELATED STUFF
     " ------------------------
 
+    set t_Co=256    " force 256 color mode. This really shouldn't be here :(
     colo qdark
 
     set wrap " scrolling will probably be hard on the console
@@ -241,6 +242,7 @@ else
     set wildmenu        " this menu is too wild to handle!
     set ruler           " display line number and % info
     set laststatus=2    " Always display window status bar
+    set number          " Line numbers on by default
 
 endif 
 
