@@ -149,6 +149,7 @@ if has("gui_running")
     " winpos 100 100
     " winpos 432 329
     set number
+    set relativenumber
 
     colo qdark
     " colo satori
@@ -237,6 +238,7 @@ else
     set ruler           " display line number and % info
     set laststatus=2    " Always display window status bar
     set number          " Line numbers on by default
+    set relativenumber
 
 endif 
 
