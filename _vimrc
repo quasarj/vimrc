@@ -66,12 +66,18 @@ set completeopt=menuone,longest,preview
 
 let mapleader = ","
 
-" arrow keys are evil!
+" spacebar isn't that useful in normal mode, so use it for zz
+" (center current line on screen)
+nmap <space> zz
+
+
+" navigate buffers with arrows
 nmap <Right> :bn<CR>
 nmap <Left>  :bp<CR>
 nmap <Up>    :bfirst<CR>
 nmap <Down>  :b
 
+" arrow keys are evil!
 imap <Right> NO ARROW KEYS FOR YOU!
 imap <Left>  NO ARROW KEYS FOR YOU!
 imap <Up>    NO ARROW KEYS FOR YOU!
