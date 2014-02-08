@@ -1,10 +1,15 @@
-" Vim filetype plugin file
-" Language:	python
-" Maintainer:	Johannes Zellner <johannes@zellner.org>
-" Last Change:	Wed, 21 Apr 2004 13:13:08 CEST
+" Custom filetype plugin for python
+" This should be used along side python-syntax.vim
+"       https://github.com/hdima/python-syntax
 
 if exists("b:did_ftplugin") | finish | endif
 let b:did_ftplugin = 1
+
+
+
+
+nmap <buffer> <F9> :!python2 %<CR>
+
 
 setlocal cinkeys-=0#
 setlocal indentkeys-=0#
@@ -23,7 +28,6 @@ nnoremap <silent> <buffer> [[ :call <SID>Python_jump('?^\(class\\|def\)')<cr>
 nnoremap <silent> <buffer> ]m :call <SID>Python_jump('/^\s*\(class\\|def\)')<cr>
 nnoremap <silent> <buffer> [m :call <SID>Python_jump('?^\s*\(class\\|def\)')<cr>
 
-nmap <buffer> <F9> :!python2 %<CR>
 
 if exists('*<SID>Python_jump') | finish | endif
 
@@ -38,8 +42,3 @@ fun! <SID>Python_jump(motion) range
     call histdel('/', -1)
     let @/ = save    " restore last search pattern
 endfun
-
-if has("gui_win32") && !exists("b:browsefilter")
-    let b:browsefilter = "Python Files (*.py)\t*.py\n" .
-		       \ "All Files (*.*)\t*.*\n"
-endif

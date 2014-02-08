@@ -13,6 +13,15 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+" trace syntax highlighting chain
+Bundle 'gerw/vim-HiLinkTrace'
+
+" python enhanced syntax matching
+Bundle 'hdima/python-syntax'
+
+
+Bundle 'fugitive.vim'
+
 " Excellent completion plugin for many filetypes
 " Note that it must be compiled outside of vim
 Bundle 'Valloric/YouCompleteMe'
@@ -39,7 +48,7 @@ Bundle 'Command-T'
 Bundle 'skammer/vim-css-color'
 
 " Zen Coding
-Bundle 'mattn/zencoding-vim'
+Bundle 'mattn/emmet-vim'
 
 " --------------------
 
@@ -157,6 +166,9 @@ if has("gui_running")
     set number
     set relativenumber
 
+    " link the default yank buffer to the x11 clipboard
+    set clipboard=unnamedplus 
+
     colo qdark
     " colo satori
     " colo zellner
@@ -219,6 +231,7 @@ else
     " ------------------------
 
     set t_Co=256    " force 256 color mode. This really shouldn't be here :(
+    " colo Tomorrow-Night-Eighties
     colo qdark
 
     set wrap " scrolling will probably be hard on the console
@@ -245,6 +258,9 @@ else
     set laststatus=2    " Always display window status bar
     set number          " Line numbers on by default
     set relativenumber
+
+    " link the default yank buffer to the x11 clipboard
+    set clipboard=unnamedplus 
 
 endif 
 
