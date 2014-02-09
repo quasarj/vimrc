@@ -20,7 +20,7 @@ Bundle 'gerw/vim-HiLinkTrace'
 Bundle 'hdima/python-syntax'
 
 
-Bundle 'fugitive.vim'
+Bundle 'tpope/vim-fugitive'
 
 " Excellent completion plugin for many filetypes
 " Note that it must be compiled outside of vim
@@ -140,15 +140,26 @@ command Q q
 
 syntax on
 
+if 1
+    " Powerline
+    " Note: This requires quasarj/dotfiles to be installed
+    " set rtp+=~/.dotfiles/submodules/powerline/powerline/bindings/vim
+    Bundle 'bling/vim-airline'
+    
+    let g:airline_powerline_fonts = 1
+    let g:airline#extensions#branch#enabled = 1
 
+    set noruler       " display line number and % info
+    set laststatus=2 " Always display window status bar
+    set noshowmode   " do not show mode text in the bottom bar
+    set modelines=0  " fully disable modelines
+
+endif
 if has("gui_running")
 " ------------------------
 "  GUI-specific settings
 " ------------------------
 
-    " Powerline
-    " Note: This requires quasarj/dotfiles to be installed
-    set rtp+=~/.dotfiles/submodules/powerline/powerline/bindings/vim
 
     " font
     set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
