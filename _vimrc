@@ -149,7 +149,11 @@ if 1
     let g:airline_powerline_fonts = 1
     let g:airline#extensions#branch#enabled = 1
 
-    set noruler       " display line number and % info
+    let g:airline#extensions#tabline#enabled = 1
+    let g:airline#extensions#tabline#show_buffers = 1
+    let g:airline#extensions#tabline#buffer_min_count = 2
+
+    set noruler      " display line number and % info
     set laststatus=2 " Always display window status bar
     set noshowmode   " do not show mode text in the bottom bar
     set modelines=0  " fully disable modelines
