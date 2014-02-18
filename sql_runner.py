@@ -16,21 +16,41 @@ class Window(QtGui.QWidget):
     pop_signal = QtCore.pyqtSignal(object, object)
     execute_signal = QtCore.pyqtSignal(object, object)
 
+
+    conn = None
+    cur = None
+    database = None
+
+    scroll_pause = False
+
     def __init__(self): #, data, headers):
         QtGui.QWidget.__init__(self)
         self.table = QtGui.QTableWidget(1, 1, self)
+        self.table.verticalHeader().setDefaultSectionSize(19)
+        self.table.setAlternatingRowColors(True)
 
-        # self.buttonOpen = QtGui.QPushButton('Open', self)
         # self.buttonSave = QtGui.QPushButton('Save', self)
-        # self.buttonOpen.clicked.connect(self.handleOpen)
         # self.buttonSave.clicked.connect(self.handleSave)
+
+        # self.buttonMore = QtGui.QPushButton('More', self)
+        # self.buttonMore.clicked.connect(self.get_more)
+
         layout = QtGui.QVBoxLayout(self)
         layout.addWidget(self.table)
-        # layout.addWidget(self.buttonOpen)
+
+        # layout.addWidget(self.buttonMore)
         # layout.addWidget(self.buttonSave)
 
         self.pop_signal.connect(self.populate)
         self.execute_signal.connect(self.execute)
+
+        self.table.verticalScrollBar().valueChanged.connect(self.scroll)
+
+    def scroll(self, val):
+        if not self.scroll_pause:
+            max = self.table.verticalScrollBar().maximum()
+            if val >= max: # user has scrolled to the end
+                self.get_more()
 
 
     def populate(self, data, headers):
@@ -51,24 +71,54 @@ class Window(QtGui.QWidget):
 
         for i,row in enumerate(data):
             for j,field in enumerate(row):
-                item = QtGui.QTableWidgetItem(str(field))
-                self.table.setItem(i, j, item)
+                self.add_item(i, j, field)
 
-    def execute(database, query):
-        conn = default_connection.get(database)
-        cur = conn.cursor()
 
-        cur.execute(query)
+        self.table.resizeColumnsToContents()
 
-        # scratch.append('\t'.join([i[0] for i in cur.description]))    
-        headers = [i[0] for i in cur.description]
+    def execute(self, database, query):
+        self.scroll_pause = True
+        # reuse existing DB connection if this is for the same DB
+        if self.database != database:
+            if self.conn:
+                    self.conn.close()
+            self.conn = default_connection.get(database)
+            self.database = database
 
-        # for i,row in enumerate(cur):
-        #     scratch.append('\t'.join([str(j) for j in row]))
-        #     if i > 10: break
+        self.cur = self.conn.cursor()
+
+        self.cur.execute(query)
+
+        headers = [i[0] for i in self.cur.description]
         
-        data = cur.fetchmany(50)
+        data = self.cur.fetchmany(50)
 
+        self.populate(data, headers)
+        self.scroll_pause = False
+
+    def get_more(self):
+        if self.cur:
+            
+            data = self.cur.fetchmany(50)
+
+            current = self.table.rowCount()
+            self.table.setRowCount(current + len(data))
+
+            for i,row in enumerate(data):
+                for j,field in enumerate(row):
+                    self.add_item(current + i, j, field)
+
+    def add_item(self, x, y, value):
+        # color = None if x % 2 else (238, 238, 238, 255)
+        color = None 
+        if value is None:
+            value = "{null}"
+            color = (242, 255, 188, 255)
+        
+        item = QtGui.QTableWidgetItem(str(value))
+        if color:
+            item.setBackgroundColor(QtGui.QColor(*color))
+        self.table.setItem(x, y, item)
 
     # def handleSave(self):
     #     path = QtGui.QFileDialog.getSaveFileName(
@@ -122,7 +172,6 @@ def showWindow():
 def run_sql(cmdline, from_line, to_line):
     global window
 
-
     # break the commandline up here
     database = cmdline
 
@@ -130,38 +179,6 @@ def run_sql(cmdline, from_line, to_line):
     to_line = int(to_line)          # however, to_line reports one less
 
     query = '\n'.join(vim.current.buffer[from_line:to_line]).replace(';', '')
-
-    # (row, col) = vim.current.window.cursor
-    # line = vim.current.buffer[from_line] # 0 vs 1 based
-
-    # get a new scratch buffer
-    # vim.command('botright new')
-    # vim.command('setlocal buftype=nofile bufhidden=wipe nobuflisted noswapfile nowrap')
-    # scratch = vim.current.buffer
-
-    # vim.current.buffer[row-1] = "haha broke your code!"
-    # scratch.append("Query executed against: {}".format(database))
-    # scratch.append("start pos: {}, end pos: {}".format(from_line, to_line))
-
-    # vim.current.window.cursor = (1, 0)
-
-    # del vim.current.buffer[3] # also works with slices
-
-    # get the visual selection: vim.current.buffer.mark('<') # start, > is end
-
-    conn = default_connection.get(database)
-    cur = conn.cursor()
-
-    cur.execute(query)
-
-    # scratch.append('\t'.join([i[0] for i in cur.description]))    
-    headers = [i[0] for i in cur.description]
-
-    # for i,row in enumerate(cur):
-    #     scratch.append('\t'.join([str(j) for j in row]))
-    #     if i > 10: break
-    
-    data = cur.fetchmany(50)
 
     if not window:
         t = threading.Thread(target=showWindow) #, args=(data, headers))
@@ -174,9 +191,8 @@ def run_sql(cmdline, from_line, to_line):
             time.sleep(0.1)
 
     # window.pop_signal(data, headers)
-    window.pop_signal.emit(data, headers)
-
-    conn.close()
+    # window.pop_signal.emit(data, headers)
+    window.execute_signal.emit(database, query)
 
     vim.command("return 1") # return from the vim function?
 
