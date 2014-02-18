@@ -13,6 +13,8 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
+Bundle 'quasarj/VimSQL'
+
 " trace syntax highlighting chain
 Bundle 'gerw/vim-HiLinkTrace'
 
