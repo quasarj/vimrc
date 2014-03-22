@@ -15,11 +15,28 @@ Bundle 'gmarik/vundle'
 
 Bundle 'quasarj/VimSQL'
 
+Bundle 'chrisbra/csv.vim'
+
 " trace syntax highlighting chain
 Bundle 'gerw/vim-HiLinkTrace'
 
 " python enhanced syntax matching
 Bundle 'hdima/python-syntax'
+
+" proper python folding support
+Bundle 'tmhedberg/SimpylFold'
+let g:SimpylFold_docstring_preview = 1
+let g:SimpylFold_fold_docstring = 0
+
+
+" UltiSnips engine
+Bundle 'SirVer/ultisnips'
+let g:UltiSnipsExpandTrigger="<c-g>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" General Snippets library
+Bundle 'honza/vim-snippets'
 
 
 Bundle 'tpope/vim-fugitive'
@@ -70,6 +87,9 @@ filetype plugin indent on
 
 set completeopt=menuone,longest,preview
 
+" Use wildignore to keep Command-T from indexing some binary files
+set wildignore+=*.pyc,*.obj,.git
+
 
 " ------------------------
 "       Key bindings
@@ -77,10 +97,7 @@ set completeopt=menuone,longest,preview
 
 let mapleader = ","
 
-" spacebar isn't that useful in normal mode, so use it for zz
-" (center current line on screen)
-nmap <space> zz
-
+nmap <space> :w<CR>
 
 " navigate buffers with arrows
 nmap <Right> :bn<CR>
@@ -154,6 +171,9 @@ if 1
     let g:airline#extensions#tabline#enabled = 1
     let g:airline#extensions#tabline#show_buffers = 1
     let g:airline#extensions#tabline#buffer_min_count = 2
+
+    " csv display
+    let g:airline#extensions#csv#column_display = 'Name'
 
     set noruler      " display line number and % info
     set laststatus=2 " Always display window status bar
@@ -251,7 +271,8 @@ else
     " colo Tomorrow-Night-Eighties
     colo qdark
 
-    set wrap " scrolling will probably be hard on the console
+    set mouse=a
+    set nowrap 
 
     " Insert spaces instead of tabs (4)
     set tabstop=4
