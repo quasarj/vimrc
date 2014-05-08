@@ -35,23 +35,23 @@ hi Visual       guifg=#f6f3e8 guibg=#444444 gui=none
 hi SpecialKey   guifg=#808080 guibg=#343434 gui=none
 
 " Syntax highlighting
-hi Comment      guifg=#99968b gui=italic ctermfg=245
+hi Comment      guifg=#8a8a8a gui=italic ctermfg=245
 hi Todo         guifg=#8f8f8f gui=italic
 hi Constant     guifg=#e5786d gui=none ctermfg=178
-hi String       guifg=#95e454 gui=italic ctermfg=202
+hi String       guifg=#ff5f00 gui=none ctermfg=202
 " Identifier: ???
 hi Identifier   guifg=#cae682 gui=none ctermfg=14
 " Function: None, built-in functions, and function names on def lines.
-hi Function     guifg=#cae682 gui=none ctermfg=226
+hi Function     guifg=#ffff00 gui=none ctermfg=226
 " Type: Exception() is a type, possibly other things.
 hi Type         guifg=#cae682 gui=none ctermfg=227
 " Statement: keywords (def, if, else, while, etc)
-hi Statement    guifg=#8ac6f2 gui=bold ctermfg=33 cterm=bold 
+hi Statement    ctermfg=33 cterm=bold guifg=#0087ff gui=bold 
 " Keyword:  ???
 hi Keyword      guifg=#8ac6f2 gui=none ctermfg=178
 hi PreProc      guifg=#e5786d gui=none ctermfg=213
-hi Include      ctermfg=213
-hi Number       guifg=#e5786d gui=none ctermfg=51
+hi Include      ctermfg=213 guifg=#ff87ff
+hi Number       guifg=#00ffff gui=none ctermfg=51
 hi Special      guifg=#e7f6da gui=none ctermfg=160
 
 
