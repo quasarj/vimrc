@@ -13,7 +13,9 @@ call vundle#rc()
 " let Vundle manage Vundle
 Bundle 'gmarik/vundle'
 
-Bundle 'quasarj/VimSQL'
+" Bundle 'quasarj/VimSQL'
+" Another Oracle client attempt
+Bundle 'talek/vorax4'
 
 Bundle 'chrisbra/csv.vim'
 
@@ -63,8 +65,8 @@ Bundle 'Command-T'
 "  HTML stuff
 " --------------------
 
-" html color coloring
-Bundle 'skammer/vim-css-color'
+" html color coloring, ap fork fixes load times on HTML/md files!
+Bundle 'ap/vim-css-color'
 
 " Zen Coding
 Bundle 'mattn/emmet-vim'
@@ -90,6 +92,7 @@ set completeopt=menuone,longest,preview
 " Use wildignore to keep Command-T from indexing some binary files
 set wildignore+=*.pyc,*.obj,.git
 
+set foldlevel=20
 
 " ------------------------
 "       Key bindings
@@ -121,6 +124,9 @@ map <leader># :s/^#//<CR>:noh<CR>
 
 " Shortcut to rapidly toggle `set list`
 nmap <leader>l :set list!<CR>
+
+" Shortcut to close the current buffer without closing the current window!
+nmap <leader>c :bp\|bd #<CR>
 
 " CommandT
 nmap <silent> <leader>t :CommandT<CR>
@@ -178,7 +184,7 @@ if 1
     set noruler      " display line number and % info
     set laststatus=2 " Always display window status bar
     set noshowmode   " do not show mode text in the bottom bar
-    set modelines=0  " fully disable modelines
+    "set modelines=0  " fully disable modelines
 
 endif
 if has("gui_running")
@@ -188,7 +194,7 @@ if has("gui_running")
 
 
     " font
-    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 11
+    set guifont=DejaVu\ Sans\ Mono\ for\ Powerline\ 14
 
     " hide menu and toolbar
     set go-=m
@@ -256,7 +262,7 @@ if has("gui_running")
     set noruler       " display line number and % info
     set laststatus=2 " Always display window status bar
     set noshowmode   " do not show mode text in the bottom bar
-    set modelines=0  " fully disable modelines
+    "set modelines=0  " fully disable modelines
 
 else
 " ------------------------
